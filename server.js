@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.json());
 
 const port = process.env.PORT || 5000;
+const countries = [{id: "germany", name: "Germany"}, {id: "netherlands", name: "Netherlands"}];
 let tasks = [];
 
 app.get('/tasks', (req, res) => {
@@ -29,6 +30,13 @@ app.post('/tasks', (req, res) => {
     return
   }
 
+  const countryIds = countries.map((c) => (c.id));
+
+  if (countryIds.indexOf(body.recipient.country) < 0) {
+    res.status(422).json({error: `Country '${body.recipient.country}' not allowed. Allowed countries: ${countryIds.join(", ")}`});
+    return
+  }
+
   let task = {recipient: {}};
 
   task.delivery_at = body.delivery_at;
@@ -44,6 +52,10 @@ app.post('/tasks', (req, res) => {
   tasks.push(task);
 
   res.status(201).json(task);
+});
+
+app.get('/countries', (req, res) => {
+  res.json(countries);
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
