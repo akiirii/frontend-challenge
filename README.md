@@ -16,3 +16,9 @@ The servers should start at the following addresses:
   * http://localhost:3000
 * Backend
   * http://localhost:5000
+
+## How to create a task in the backend
+
+```
+curl -X POST -v -d '{"delivery_at":"2017-01-01", "recipient":{"name":"User","zipcode":"10249","street":"Test","street_number":23,"city":"Berlin","state":"Berlin","country":"Germany","phone":"+49 176 22222222"}}' -H "Content-Type: application/json" http://localhost:5000/tasks
+```
