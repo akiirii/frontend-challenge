@@ -20,7 +20,6 @@ app.post('/tasks', (req, res) => {
        || !body.recipient
        || !body.recipient.name
        || !body.recipient.street
-       || !body.recipient.street_number
        || !body.recipient.city
        || !body.recipient.country
        || !body.recipient.phone
@@ -42,7 +41,6 @@ app.post('/tasks', (req, res) => {
   task.delivery_at = body.delivery_at;
   task.recipient.name = body.recipient.name;
   task.recipient.street = body.recipient.street;
-  task.recipient.street_number = body.recipient.street_number;
   task.recipient.zipcode = body.recipient.zipcode;
   task.recipient.city = body.recipient.city;
   task.recipient.state = body.recipient.state;
