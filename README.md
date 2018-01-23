@@ -17,6 +17,10 @@ The servers should start at the following addresses:
 * Backend
   * http://localhost:5000
 
+## Frontend
+
+The frontend part of the project should be developed inside the client directory.
+
 ## Backend examples
 
 ### Creating a task
