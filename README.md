@@ -19,7 +19,7 @@ The servers should start at the following addresses:
 
 ## Frontend
 
-The frontend part of the project should be developed inside the client directory.
+The frontend part of the project should be developed inside the [client directory](./client/).
 
 ## Backend examples
 
