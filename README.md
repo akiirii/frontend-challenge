@@ -1,4 +1,4 @@
-# Fliit Admin (Frontend Challenge)
+# Tasks Admin
 
 ## Running the project
 
