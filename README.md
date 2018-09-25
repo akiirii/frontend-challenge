@@ -1,6 +1,6 @@
 # Tasks admin
 
-At Fliit, we provide a dashboard for our Operation team to manage the status of the current delivery tasks. We need a feature that allows a team member to create a task in a web interface.
+At Fliit, we provide a Console for customers to manage delivery tasks. We need a feature that allows a customer to create a task in a web interface.
 
 ### Acceptance Criterias
 
@@ -21,7 +21,7 @@ At Fliit, we provide a dashboard for our Operation team to manage the status of 
 3. When submitted, the form should make an http request to the backend
 4. If the request to the backend was successful, the user should be redirected to a list page with a success notification
 5. If the request was not successful the form should show an error message
-6.  The country field should be one of the allowed countries (the /countries endpoint of the back lists the allowed countries).
+6. The country field should be one of the allowed countries (the /countries endpoint of the back lists the allowed countries).
 
 #### Please also provide:
 - Basic documentation on how to setup local environment and run the service locally
@@ -36,7 +36,7 @@ At Fliit, we provide a dashboard for our Operation team to manage the status of 
 
 ### Setup
 Feel free to use any framework you are confortable with.
-We prepared an initial app with `Vue.js` and a `Node.js` backend, that are the technologies that we use here at fliit.
+We prepared an initial app with `Vue.js` and a `Node.js` backend, which are technologies that we use here at fliit.
 
 > The backend is able to create tasks in memory.
 
