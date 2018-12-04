@@ -1,0 +1,50 @@
+[
+  {
+    "label": "Name",
+    "type": "input",
+    "name": "name",
+    "required": true
+  },
+  {
+    "label": "Street",
+    "type": "input",
+    "name": "street",
+    "required": true
+  },
+  {
+    "label": "City",
+    "type": "input",
+    "name": "city",
+    "required": true
+  },
+  {
+    "label": "State",
+    "type": "input",
+    "name": "state",
+    "required": true
+  },
+  {
+    "label": "Country",
+    "type": "select",
+    "name": "country",
+    "required": true
+  },
+  {
+    "label": "Zipcode",
+    "type": "input",
+    "name": "zipcode",
+    "required": true
+  },
+  {
+    "label": "Phone",
+    "type": "input",
+    "name": "phone",
+    "required": true
+  },
+  {
+    "label": "Delivery At",
+    "type": "datepicker",
+    "name": "deliveryAt",
+    "required": true
+  }
+]

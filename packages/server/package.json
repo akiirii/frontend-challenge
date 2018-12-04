@@ -5,7 +5,7 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "serve": "nodemon server"
+    "serve": "npx nodemon server"
   },
   "dependencies": {
     "express": "^4.16.3",
