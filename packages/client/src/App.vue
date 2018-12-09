@@ -10,7 +10,8 @@ import vSelect from 'vue-select'
 import { Datetime } from 'vue-datetime'
 import config from './config.json'
 import Form from './components/task/task.vue'
-//import 'vue-datetime/dist/vue-datetime.css'
+import 'vue-datetime/dist/vue-datetime.css'
+import './components/styles/main.less'
 
 Vue.component('v-select', vSelect)
 Vue.component('datetime', Datetime)

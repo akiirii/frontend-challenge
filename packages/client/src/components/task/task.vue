@@ -2,15 +2,18 @@
   <div>
     <div class="page-load-error" v-if="generalError">{{generalError}}</div>
 
-    <div v-if="!generalError">
+    <div class="task" v-if="!generalError">
 
-      <div class="message" v-if="message">{{message}}</div>
+      <h1>Task</h1>
 
-      <div v-for="field in fields" :key="field.name">
+      <div class="message" :class="{error: submitError}" v-if="message">{{message}}</div>
+
+      <div class="field" :class="{error : error[field.name] && submited}" v-for="field in fields" :key="field.name">
 
         <label v-if="field.type !== 'datepicker'">{{field.label}}</label>
 
         <input v-if="field.type === 'input'" v-model="task[field.name]"/>
+
         <v-select
           v-if="field.type === 'select'"
           v-model="task[field.name]"
@@ -18,11 +21,11 @@
           label="name"
         />
 
-        <!--<datetime v-if="field.type === 'datepicker'" v-model="task[field.name]">-->
-        <!--<label slot="before">{{field.label}}</label>-->
-        <!--</datetime>-->
+        <datetime v-if="field.type === 'datepicker'" type="datetime" v-model="task[field.name]">
+          <label slot="before">{{field.label}}</label>
+        </datetime>
 
-        <div class="error" v-if="error && error[field.name] && submited">This field is requred</div>
+        <div class="error-message" v-if="error[field.name] && submited">This field is reqiured</div>
 
       </div>
 
@@ -33,9 +36,11 @@
   </div>
 </template>
 
+
 <script>
   import axios from 'axios'
-  import { forEach, find } from 'lodash'
+  import { forEach, find, omit } from 'lodash'
+  import './task.less'
 
   export default {
     name: 'Form',
@@ -52,13 +57,14 @@
           country: '',
           zipcode: '',
           phone: '',
-//        deliveryAt: ''
+          deliveryAt: ''
 
         },
         options: {
           country: []
         },
         submited: false,
+        submitError: false,
         message: '',
         generalError: ''
       }
@@ -84,20 +90,31 @@
       }
     },
     methods: {
+      parseData: function (data) {
+        return {
+          recipient: {
+            ...omit(data, 'deliveryAt'),
+            country: data.country.id
+          },
+          delivery_at: data.deliveryAt
+        }
+      },
       submit: function () {
         this.submited = true
         this.message = ''
+        this.submitError = false
 
         const isValid = !find(this.error, (error, index) => !!error)
 
         if (isValid) {
           axios
-            .post('/tasks', this.task)
+            .post('/tasks', this.parseData(this.task))
             .then(response => {
-              this.message = 'success'
+              this.message = 'Your task is successfully saved'
             })
             .catch(error => {
-              this.message = 'error'
+              this.message = error
+              this.submitError = true
             })
         }
       }

@@ -11,12 +11,16 @@
   "dependencies": {
     "axios": "^0.18.0",
     "css-loader": "^1.0.1",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
     "lodash": "^4.17.11",
+    "lodash.camelcase": "^4.3.0",
     "luxon": "^1.8.2",
     "style-loader": "^0.23.1",
     "vue": "^2.5.17",
     "vue-datetime": "^1.0.0-beta.8",
     "vue-select": "^2.5.1",
+    "vue-style-loader": "^4.1.2",
     "weekstart": "^1.0.0"
   },
   "devDependencies": {

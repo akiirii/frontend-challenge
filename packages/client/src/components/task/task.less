@@ -1,0 +1,35 @@
+@color-red: #ff4854;
+@color-green: #349069;
+
+.task {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 50px;
+  background-color: white;
+  box-shadow: 1px 1px 2px #dddddd;
+  display: flex;
+  flex-flow: column;
+
+  .message {
+    padding: 25px;
+    text-align: center;
+    color: @color-green;
+
+    &.error {
+      color: @color-red;
+    }
+
+  }
+
+}
+
+.page-load-error {
+  color: @color-red;
+  font-size: 24px;
+}
+
+h1 {
+  margin: auto;
+  text-align: center;
+}
+

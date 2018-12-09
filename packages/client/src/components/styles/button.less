@@ -1,0 +1,20 @@
+@color-blue-1: #045597;
+@color-blue-2: #0181c8;
+
+button {
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border: none;
+  cursor: pointer;
+  max-width: 200px;
+  width: 100%;
+  background-color: @color-blue-1;
+  color: white;
+  transition: all 0.2s;
+  text-align: center;
+  margin: auto;
+
+  &:hover, &:focus {
+    background-color: @color-blue-2;
+  }
+}
