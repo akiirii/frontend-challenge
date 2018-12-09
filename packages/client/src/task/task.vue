@@ -3,7 +3,6 @@
     <div class="page-load-error" v-if="generalError">{{generalError}}</div>
 
     <div class="task" v-if="!generalError">
-
       <h1>Task</h1>
 
       <div class="message" :class="{error: submitError}" v-if="message">{{message}}</div>
@@ -26,7 +25,6 @@
         </datetime>
 
         <div class="error-message" v-if="error[field.name] && submited">This field is reqiured</div>
-
       </div>
 
       <button v-on:click="submit">Save</button>
@@ -58,7 +56,6 @@
           zipcode: '',
           phone: '',
           deliveryAt: ''
-
         },
         options: {
           country: []
