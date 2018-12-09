@@ -34,87 +34,87 @@
   </div>
 </template>
 
-
 <script>
-  import axios from 'axios'
-  import { forEach, find, omit } from 'lodash'
-  import './task.less'
 
-  export default {
-    name: 'Form',
-    props: {
-      fields: Array
-    },
-    data: function () {
-      return {
-        task: {
-          name: '',
-          street: '',
-          city: '',
-          state: '',
-          country: '',
-          zipcode: '',
-          phone: '',
-          deliveryAt: ''
-        },
-        options: {
-          country: []
-        },
-        submited: false,
-        submitError: false,
-        message: '',
-        generalError: ''
-      }
-    },
-    mounted() {
-      axios
-        .get('/countries')
-        .then((response) => {
-          this.options.country = response.data
-        })
-        .catch(error => {
-          this.generalError = 'Something went wrong, pls try again'
-        })
-    },
-    computed: {
-      error: function () {
-        var error = {}
-        forEach(this.task, (value, key) => {
-          const field = find(this.fields, ['name', key])
-          error[key] = field && field.required && !value
-        })
-        return error
-      }
-    },
-    methods: {
-      parseData: function (data) {
-        return {
-          recipient: {
-            ...omit(data, 'deliveryAt'),
-            country: data.country.id
-          },
-          delivery_at: data.deliveryAt
-        }
+import axios from 'axios'
+import { forEach, find, omit } from 'lodash'
+import './task.less'
+
+export default {
+  name: 'Form',
+  props: {
+    fields: Array
+  },
+  data: function () {
+    return {
+      task: {
+        name: '',
+        street: '',
+        city: '',
+        state: '',
+        country: '',
+        zipcode: '',
+        phone: '',
+        deliveryAt: ''
       },
-      submit: function () {
-        this.submited = true
-        this.message = ''
-        this.submitError = false
+      options: {
+        country: []
+      },
+      submited: false,
+      submitError: false,
+      message: '',
+      generalError: ''
+    }
+  },
+  mounted () {
+    axios
+      .get('/countries')
+      .then((response) => {
+        this.options.country = response.data
+      })
+      .catch(() => {
+        this.generalError = 'Something went wrong, pls try again'
+      })
+  },
+  computed: {
+    error: function () {
+      var error = {}
+      forEach(this.task, (value, key) => {
+        const field = find(this.fields, ['name', key])
+        error[key] = field && field.required && !value
+      })
+      return error
+    }
+  },
+  methods: {
+    parseData: function (data) {
+      return {
+        recipient: {
+          ...omit(data, 'deliveryAt'),
+          country: data.country.id
+        },
+        delivery_at: data.deliveryAt
+      }
+    },
+    submit: function () {
+      this.submited = true
+      this.message = ''
+      this.submitError = false
 
-        const isValid = !find(this.error, (error, index) => !!error)
+      const isValid = !find(this.error, (error, index) => !!error)
 
-        if (isValid) {
-          axios
-            .post('/tasks', this.parseData(this.task))
-            .then(response => {
-              this.message = 'Your task is successfully saved'
-            })
-            .catch(error => {
-              this.message = error
-              this.submitError = true
-            })
-        }
+      if (isValid) {
+        axios
+          .post('/tasks', this.parseData(this.task))
+          .then(response => {
+            this.message = 'Your task is successfully saved'
+          })
+          .catch(error => {
+            this.message = error
+            this.submitError = true
+          })
       }
     }
   }
+}
 </script>
